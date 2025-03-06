@@ -19,3 +19,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: public_html/Kixiportal/
         protocol: ftps
+        port: 21
+        security: strict
