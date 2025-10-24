@@ -1,24 +1,26 @@
+name: 🚀 Deploy via GITHUB ACTIONS
+
 on: 
   push:
     branches:
       - main
-name: 🚀 Deploy website on push
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
     
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: public_html/Kixiportal/
-        protocol: ftps
-        #port: 990
-        #security: strict
-        #passive: true
+    - name: 📂 Deploy via SSH
+      uses: easingthemes/ssh-deploy@v4
+      with:        
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        server-ip: ${{ secrets.SERVER_IP }}
+        username: root
+        remote-path: /www/wwwroot/kixiportal/
+        exclude: |
+            .git*
+            .github*
+            node_modules/
+            storage/
