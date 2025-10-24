@@ -15,7 +15,7 @@ jobs:
     - name: 📂 Deploy via SSH
       uses: easingthemes/ssh-deploy@v4
       with:        
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY_SSH }}
         REMOTE_HOST: ${{ secrets.SERVER_IP }}
         REMOTE_USER: root
         REMOTE_PORT: 22
