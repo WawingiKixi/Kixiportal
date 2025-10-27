@@ -8,23 +8,23 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-        - name: 🚚 Get latest code
-          uses: actions/checkout@v4
-    
-        - name: 📂 Deploy via SSH
-          uses: easingthemes/ssh-deploy@v4
-          with:         
-            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-            remote-user: root
-            server-ip: ${{ secrets.SERVER_IP }}
-            remote-port: 22
-            source: .
-            target: /www/wwwroot/kixiportal/
-            args: "-rltgoDzvO --delete --rsync-path='/usr/bin/rsync'"
-            exclude: |
-                .git*
-                .github*
-                node_modules/
-                storage/
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📂 Deploy via SSH
+        uses: easingthemes/ssh-deploy@v4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote-user: root
+          server-ip: ${{ secrets.SERVER_IP }}
+          remote-port: 22
+          source: .
+          target: /www/wwwroot/kixiportal/
+          args: "-rltgoDzvO --delete --rsync-path='/usr/bin/rsync'"
+          exclude: |
+            .git*
+            .github*
+            node_modules/
+            storage/
