@@ -26,6 +26,3 @@ jobs:
           EXCLUDE: |
             .git*
             .github*
-            node_modules/
-            storage/
-            vendor/
