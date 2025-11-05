@@ -23,4 +23,5 @@ jobs:
           SOURCE: .
           TARGET: /www/wwwroot/kixiportal/
           ARGS: "-avz --delete"
-          EXCLUDE: ".git*"
+          EXCLUDE: |
+            git*
