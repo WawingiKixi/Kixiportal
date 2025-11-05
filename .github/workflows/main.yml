@@ -12,13 +12,6 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
-        
-      # 🧪 Optional: Test SSH connection before deploying
-      - name: 🧪 Test SSH connection
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
-          chmod 600 private_key.pem
-          ssh -o StrictHostKeyChecking=no -i private_key.pem root@${{ secrets.SERVER_IP }} "echo ✅ Connected successfully!"
 
       - name: 📂 Deploy via SSH
         uses: easingthemes/ssh-deploy@v4
@@ -31,5 +24,4 @@ jobs:
           TARGET: /www/wwwroot/kixiportal/
           ARGS: "-avz --delete"
           EXCLUDE: |
-            .git* 
-            .github*
+            git*
