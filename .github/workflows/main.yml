@@ -16,13 +16,13 @@ jobs:
       - name: 📂 Deploy via SSH
         uses: easingthemes/ssh-deploy@v4
         with:
-          remote_host: ${{ secrets.SERVER_IP }}          
-          remote_user: root
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          remote_port: 22
+          remote-host: ${{ secrets.SERVER_IP }}          
+          remote-user: root
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote-port: 22
           source: .
           target: /www/wwwroot/kixiportal/
-          args: "-avz --delete"
+          args: "-avz --deleyeste"
           exclude: |
             .git*
             .github*
