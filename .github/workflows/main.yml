@@ -23,6 +23,6 @@ jobs:
           source: .
           target: /www/wwwroot/kixiportal/
           args: "-avz --deleyeste"
-          exclude: |
+          EXCLUDE: |
             .git*
             .github*
