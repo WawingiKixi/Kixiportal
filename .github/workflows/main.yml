@@ -13,24 +13,6 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      # 🔍 Passo para verificar se os secrets existem
-      - name: 🔍 Check secrets
-        run: |
-          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "❌ SSH_PRIVATE_KEY not found"
-            exit 1
-          else
-            echo "✅ SSH_PRIVATE_KEY detected"
-          fi
-
-          if [ -z "${{ secrets.SERVER_IP }}" ]; then
-            echo "❌ SERVER_IP not found"
-            exit 1
-          else
-            echo "✅ SERVER_IP detected"
-          fi
-
-      # 🚀 Deploy via SSH
       - name: 📂 Deploy via SSH
         uses: easingthemes/ssh-deploy@v4
         with:
@@ -40,9 +22,10 @@ jobs:
           REMOTE_PORT: 22
           SOURCE: .
           TARGET: /www/wwwroot/kixiportal/
-          ARGS: "-rltgoDzvO --delete --rsync-path='/usr/bin/rsync'"
+          ARGS: "-avz --delete"
           EXCLUDE: |
             .git*
             .github*
             node_modules/
             storage/
+            vendor/
